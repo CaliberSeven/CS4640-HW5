@@ -7,7 +7,7 @@ Transaction History
 New Transaction
 
 Implement:
-Login Functionality
+Login Functionality (DONE)
 New Transaction Functionality
 
 Use Query ($_GET vars) for XAMPP

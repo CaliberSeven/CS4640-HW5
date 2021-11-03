@@ -62,7 +62,7 @@ if (isset($_POST["name"]) && isset($_POST["email"] && isset($_POST["password"]))
     <meta name="author" content="Kiran Manicka and Ethan Chen"> 
     <meta name="description" content="Finance Login">
     <meta name="keywords" content="finance login"> 
-    <title>Hoo's Up Login</title> 
+    <title>CS4640 Financial</title> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/login.css">       
   </head>  
