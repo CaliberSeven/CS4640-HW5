@@ -1,0 +1,17 @@
+Create index.php file
+Create FinanceController class
+
+Views:
+Login Page
+Transaction History
+New Transaction
+
+Implement:
+Login Functionality
+New Transaction Functionality
+
+Use Query ($_GET vars) for XAMPP
+
+Store User Info and Transaction History in mysql
+
+Session Tracking using $_SESSION
