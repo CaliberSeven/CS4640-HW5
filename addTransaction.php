@@ -29,6 +29,8 @@
 
 <button>Add Transaction</button>
 
+<a href="./index.php">Go Back</a>
+
 
 </body>
 </html>
