@@ -1,0 +1,144 @@
+* {
+	box-sizing: border-box;
+}
+
+.row {
+	width: 100%;
+}
+
+/* For mobile phones */
+[class*="col-"] {
+  width: 100%;
+}  
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones and tablets: */
+  [class*="col-"] {
+    width: 100%;
+  }
+} 
+
+@media only screen and (min-width: 768px) {
+  .col-3 {
+		width: 25%;
+	}
+	
+	.col-9 {
+		width: 75%;
+	}
+} 
+
+.header {
+  padding: 10px 16px;
+  background: navy;
+  color: white;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+h1 {
+  font-weight: bold;
+}
+
+body {
+  background: orange;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.container {
+  margin: auto;
+  padding: 32px;
+  padding-left: 64px;
+  padding-right: 64px;
+  background: white;
+}
+
+.profile {
+  padding: 16px;
+  background: #9fc5e8ff;
+  border-style: solid;
+  border-radius: 25px;
+  text-align: center;
+  font-size: 18px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.recent-posts{
+  margin: auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.profile-pic-box {
+  background: white;
+  border-style: solid;
+  border-radius: 25px;
+  object-fit: cover;
+  width: 240px;
+  height: 240px;
+}
+
+.profile-box {
+  margin: auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 2px;
+  background: white;
+  border-style: solid;
+  border-radius: 15px;
+  width: 60%;
+}
+
+.profile-box:hover {
+  margin: auto;
+  margin-bottom: 8px;
+  padding: 2px;
+  background: black;
+  border-style: solid;
+  border-radius: 15px;
+  width: 60%;
+  color: white;
+}
+
+.feed {
+  margin: auto;
+}
+
+.feed-post {
+  margin: auto;
+  margin-bottom: 16px;
+  padding: 8px;
+  background: #9fc5e8ff;
+  border-style: solid;
+  border-radius: 15px;
+  width: 80%;
+  text-align: center;
+}
+
+.feed-post-pic {
+  background: white;
+  border-style: solid;
+  border-radius: 25px;
+  object-fit: cover;
+  width: 120px;
+  height: 120px;
+}
+
+.feed-post-text {
+  padding-top: 32px;
+}
+
+.replies {
+  margin: auto;
+  width: 80%;
+}
+
+.feed-button {
+  margin: auto;
+  margin-bottom: 8px;
+}
