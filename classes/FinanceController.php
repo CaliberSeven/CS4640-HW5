@@ -1,10 +1,10 @@
 <?php
 
-class TriviaController {
+class FinanceController {
 
     private $db;
     
-    private $url = "/inclass/trivia4";
+    private $url = "/ec5rdn/hw5";
     
     public function __construct() {
         $this->db = new Database();
@@ -32,40 +32,37 @@ class TriviaController {
         session_start();
     }
     
-    
     public function login() {
-        // our login code from index.php last time!
         $error_msg = "";
-        if (isset($_POST["email"])) { /// validate the email coming in
-            $data = $this->db->query("select * from user where email = ?;", "s", $_POST["email"]);
-            if ($data === false) {
+        // Check if the user submitted the form.
+        if (isset($_POST["name"]) && isset($_POST["email"] && isset($_POST["password"])) { // validate the email coming in
+            $data = $this->db->query("select * from user_HW5 where email = ?;", "s", $_POST["email"]);
+            if ($data == false) {
                 $error_msg = "Error checking for user";
-            } else if (!empty($data)) { 
-                // user was found!
-                // validate the user's password
+            } else if (!empty($data)) {
+                // user was found!  Verify password, then Send to the game (with a GET parameter containing their email)
                 if (password_verify($_POST["password"], $data[0]["password"])) {
-                    $_SESSION["name"] = $data[0]["name"];
-                    $_SESSION["email"] = $data[0]["email"];
-                    $_SESSION["score"] = $data[0]["score"];
-                    header("Location: {$this->url}/question/");
-                    return;
+                    $_SESSION["name"]=$data[0]["name"];
+                    $_SESSION["email"]=$data[0]["email"];
+                    header("Location: {$this->url}/index/");
+                    exit();
                 } else {
-                    $error_msg = "Invalid Password";
+                    $error_msg = "Incorrect password";
                 }
             } else {
+                // User was not found.  For our game, we'll just insert them!
                 $hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
-                $insert = $this->db->query("insert into user (name, email, password) values (?, ?, ?);", "sss", $_POST["name"], $_POST["email"], $hash);
-                if ($insert === false) {
+                $insert = $this->db->query("insert into user (email, password, name) values (?, ?, ?);", "sss", $_POST["email"], $hash, $_POST["name"]);
+                if (!$insert == false) {
                     $error_msg = "Error creating new user";
                 } 
-                
-                $_SESSION["name"] = $_POST["name"];
-                $_SESSION["email"] = $_POST["email"];
-                $_SESSION["score"] = 0;
-                header("Location: {$this->url}/question/");
-                return;
-            }
 
+                $_SESSION["name"]=$_POST["name"];
+                $_SESSION["email"]=$_POST["email"];
+                header("Location: {$this->url}/index/");
+                return;
+                }
+            }
         }
 
         include "templates/login.php";

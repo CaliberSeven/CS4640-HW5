@@ -10,12 +10,12 @@ namespace config;
 
 class Config {
 
-    public static $DATABASE_HOST = "localhost"; // hostname (localhost)
+    public static $DATABASE_HOST = "cs4640.cs.virginia.edu";
 
-    public static $DATABASE_USER = "root"; // XAMPP uses root
+    public static $DATABASE_USER = "km9eg";
 
-    public static $DATABASE_PASSWD = ""; // XAMPP uses empty by default
+    public static $DATABASE_PASSWD = "SdAISBQcgPwm";
 
-    public static $DATABASE_DBASE = "test"; // Which database (XAMPP has test)
+    public static $DATABASE_DBASE = "km9eg";
 
 }
