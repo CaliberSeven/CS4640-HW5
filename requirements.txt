@@ -1,4 +1,4 @@
-Create index.php file
+Create index.php file (DONE)
 Create FinanceController class
 
 Views:
@@ -7,7 +7,7 @@ Transaction History
 New Transaction
 
 Implement:
-Login Functionality (DONE)
+Login Functionality
 New Transaction Functionality
 
 Use Query ($_GET vars) for XAMPP

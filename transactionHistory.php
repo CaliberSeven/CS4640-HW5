@@ -1,46 +1,33 @@
-<?php
-/** DATABASE SETUP **/
-include("database_credentials.php"); // define variables
+<!DOCTYPE html>
 
-/** SETUP **/
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-$db = new mysqli($dbhost, $dbusername, $dbpasswd, $dbname);
-$transactions = null;
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="author" content="Kiran Manicka and Ethan Chen"> 
+    <meta name="description" content="Finance Login">
+    <meta name="keywords" content="finance login"> 
+    <title>CS4640 Financial</title> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/login.css">       
+  </head>  
+  <body>
+    
+    <h1>Your Transaction History</h1>
+    
 
-// Deal with the current session 
-if (isset($_GET["email"])) { // validate the email coming in
-    $stmt = $db->prepare("select * from transaction_hw5 where email = ?;");
-    $stmt->bind_param("s", $_GET["email"]);
-    if (!$stmt->execute()) {
-        die("Error checking for user");
-    } else { 
-        // result succeeded
-        $res = $stmt->get_result();
-        $data = $res->fetch_all(MYSQLI_ASSOC);
-        
-        if (empty($data)) {
-            // user was NOT found!
-            header("Location: templates/login.php");
-            exit();
-        } 
-        // The user WAS found (SECURITY ALERT: we only checked against
-        // their email address -- this is not a secure method of
-        // keeping track of users!  We more likely want a unique
-        // session ID for this user instead!
-        $transactions = $data[0];
-    }
-} else {
-    // User did not supply email GET parameter, so send them
-    // to the login page
-    header("Location: templates/login.php");
-    exit();
-}
-
-
-
-
-
-
-
-
-?>
+    <table>
+    <?php foreach($data as $item): ?>
+    <tr>
+        <td><?= $item["name"]; ?></td>
+        <td><?= $item["amount"]; ?></td>
+        <td><?= $item["date"]; ?></td>
+        <td><?= $item["type"]; ?></td>
+    </tr>
+    <?php endforeach; ?>
+    </table>
+    
+    
+  </body>
+</html>

@@ -4,7 +4,7 @@ class FinanceController {
 
     private $db;
     
-    private $url = "/ec5rdn/hw5";
+    private $url = "/km9eg/HW5";
     
     public function __construct() {
         $this->db = new Database();
@@ -13,9 +13,8 @@ class FinanceController {
     public function run($command) {
         
         switch($command) {
-            case "question":
-                $this->question();
-                break;
+            case "insert":
+                $this->transactionHistory();
             case "logout":
                 $this->destroySession();
             case "login":
@@ -35,16 +34,16 @@ class FinanceController {
     public function login() {
         $error_msg = "";
         // Check if the user submitted the form.
-        if (isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["password"])){ 
-            $data = $this->db->query("select * from user_HW5 where email = ?;", "s", $_POST["email"]);
-            if ($data == false) {
+        if (isset($_POST["email"])) { // validate the email coming in
+            $data = $this->db->query("select * from user_hw5 where email = ?;", "s", $_POST["email"]);
+            if ($data === false) {
                 $error_msg = "Error checking for user";
             } else if (!empty($data)) {
                 // user was found!  Verify password, then Send to the game (with a GET parameter containing their email)
                 if (password_verify($_POST["password"], $data[0]["password"])) {
                     $_SESSION["name"]=$data[0]["name"];
                     $_SESSION["email"]=$data[0]["email"];
-                    header("Location: {$this->url}/index/");
+                    header("Location: {$this->url}/index.php?command=insert");
                     exit();
                 } else {
                     $error_msg = "Incorrect password";
@@ -52,14 +51,14 @@ class FinanceController {
             } else {
                 // User was not found.  For our game, we'll just insert them!
                 $hash = password_hash($_POST["password"], PASSWORD_DEFAULT);
-                $insert = $this->db->query("insert into user (email, password, name) values (?, ?, ?);", "sss", $_POST["email"], $hash, $_POST["name"]);
-                if (!$insert == false) {
+                $insert = $this->db->query("insert into user_hw5 (email, password, name) values (?, ?, ?);", "sss", $_POST["email"], $hash, $_POST["name"]);
+                if (!$insert === false) {
                     $error_msg = "Error creating new user";
                 } 
 
                 $_SESSION["name"]=$_POST["name"];
                 $_SESSION["email"]=$_POST["email"];
-                header("Location: {$this->url}/index/");
+                header("Location: {$this->url}/index.php?command=insert");
                 return;
             }
         }
@@ -68,6 +67,26 @@ class FinanceController {
         include ("templates/login.php");
     }
     
+    public function transaction() {
+        if (isset($_POST["name"])) {
+            $insert = $this->db->query("insert into transaction_hw5 (email, name, date, amount, type) values (?, ?, ?, ?, ?);", "sssds",
+                $_SESSION["email"], $_POST["name"], $_POST["date"], $_POST["amount"], $_POST["type"]);
+            if (!$insert === false) {
+                $error_msg = "Error inserting transaction";
+            } else {
+                $error_msg = "Transaction Inserted";
+            }
+        }
+
+        include "templates/transaction.php";
+    }
+
+    public function transactionHistory() {
+        if ($_SESSION["email"]){
+            $data = $this->db->query("select * from transaction_hw5 where email=? order by date desc;","s",$_SESSION["email"]);
+        }
+        include "transactionHistory.php";
+    }
     
     public function question() {
         // Our php code from question.php last time!
