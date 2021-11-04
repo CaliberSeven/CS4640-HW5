@@ -35,7 +35,7 @@ class FinanceController {
     public function login() {
         $error_msg = "";
         // Check if the user submitted the form.
-        if (isset($_POST["name"]) && isset($_POST["email"] && isset($_POST["password"])) { // validate the email coming in
+        if (isset($_POST["name"]) && isset($_POST["email"]) && isset($_POST["password"])){ 
             $data = $this->db->query("select * from user_HW5 where email = ?;", "s", $_POST["email"]);
             if ($data == false) {
                 $error_msg = "Error checking for user";
@@ -61,11 +61,11 @@ class FinanceController {
                 $_SESSION["email"]=$_POST["email"];
                 header("Location: {$this->url}/index/");
                 return;
-                }
             }
         }
+        
 
-        include "templates/login.php";
+        include ("templates/login.php");
     }
     
     
