@@ -24,7 +24,7 @@
           echo "<div class='alert alert-danger'>$error_msg</div>";
       }
     ?>
-    <form action="<?=$this->url?>/transaction/" method="post">
+    <form action="<?=$this->url?>/index.php?command=insert&moving=yes" method="post">
       <div class="imgcontainer"> 
         <!-- uva picture -->
         <img src="uva.png" alt="UVA Logo" class="avatar">
@@ -49,7 +49,7 @@
         <input type="radio" name="type"
         <?php if (isset($type) && $type=="crebit") echo "checked";?>   
         value="credit">Credit
-        <button type="submit">Login</button>
+        <button type="submit">Insert</button>
       </div>
     </form>
   </body>

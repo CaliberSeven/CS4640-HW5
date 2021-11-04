@@ -17,6 +17,7 @@ if (isset($_GET["command"])) {
     if ($_GET["command"] == "login") {
         $parts = ["login"];
     } elseif ($_GET["command"] == "insert") {
+        echo $_SESSION["email"];
         $parts = ["insert"];
     } elseif ($_GET["command"] == "transactions") {
         $parts = ["transactions"];
