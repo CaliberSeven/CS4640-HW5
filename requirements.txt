@@ -10,7 +10,7 @@ Implement:
 Login Functionality
 New Transaction Functionality
 
-Use Query ($_GET vars) for XAMPP
+Use Query ($_GET vars)
 
 Store User Info and Transaction History in mysql
 
