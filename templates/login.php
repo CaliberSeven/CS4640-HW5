@@ -23,7 +23,7 @@
           echo "<div class='alert alert-danger'>$error_msg</div>";
       }
     ?>
-    <form action="<?=$this->url?>/index.php?command=login/" method="post">
+    <form action="<?=$this->url?>/index.php?command=login&moved=yes" method="post">
       <div class="imgcontainer"> 
         <!-- uva picture -->
         <img src="uva.png" alt="UVA Logo" class="avatar">
