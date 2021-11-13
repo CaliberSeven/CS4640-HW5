@@ -47,7 +47,7 @@
         <?php if (isset($type) && $type=="debit") echo "checked";?>
         value="debit">Debit
         <input type="radio" name="type"
-        <?php if (isset($type) && $type=="crebit") echo "checked";?>   
+        <?php if (isset($type) && $type=="credit") echo "checked";?>   
         value="credit">Credit
         <button type="submit">Insert</button>
       </div>
